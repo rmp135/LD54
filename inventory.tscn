@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://crkumcxpc8hyx"]
+
+[ext_resource type="Texture2D" uid="uid://njmt6dq5rabu" path="res://32x/tile_0001.png" id="1_ot1bv"]
+[ext_resource type="Script" path="res://inventory.gd" id="2_if0ah"]
+[ext_resource type="Script" path="res://item.gd" id="3_b2f5s"]
+
+[sub_resource type="Resource" id="Resource_8rvis"]
+script = ExtResource("3_b2f5s")
+name = "test"
+width = 3
+height = 2
+x = 0
+y = 0
+
+[sub_resource type="Resource" id="Resource_pqccc"]
+script = ExtResource("3_b2f5s")
+name = "test"
+width = 2
+height = 2
+x = 3
+y = 3
+
+[node name="MyInventory" type="TextureRect" groups=["inventory"]]
+texture_filter = 1
+anchors_preset = -1
+anchor_right = 0.278
+anchor_bottom = 0.494
+offset_right = -0.256042
+offset_bottom = -0.112
+texture = ExtResource("1_ot1bv")
+stretch_mode = 1
+script = ExtResource("2_if0ah")
+width = 5
+height = 5
+items = Array[ExtResource("3_b2f5s")]([SubResource("Resource_8rvis"), SubResource("Resource_pqccc")])

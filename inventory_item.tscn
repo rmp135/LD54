@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://spcfw88mqqjl"]
+
+[ext_resource type="Texture2D" uid="uid://op6oqyg54f66" path="res://icon.svg" id="1_l0h0t"]
+[ext_resource type="Script" path="res://inventory_item.gd" id="2_r85dm"]
+
+[node name="inv_item" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1120.0
+offset_bottom = -616.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_l0h0t")
+expand_mode = 1
+script = ExtResource("2_r85dm")
+
+[connection signal="gui_input" from="." to="." method="_on_icon_gui_input"]
