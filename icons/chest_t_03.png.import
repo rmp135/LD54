@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3m2d7mgpxtl1"
-path="res://.godot/imported/grid.png-9bb66f80dbdd793fb4bb275a0d999fdf.ctex"
+uid="uid://jggpsglja7m"
+path="res://.godot/imported/chest_t_03.png-1adc2725efe623ffbe931503a1a095f9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://grid.png"
-dest_files=["res://.godot/imported/grid.png-9bb66f80dbdd793fb4bb275a0d999fdf.ctex"]
+source_file="res://icons/chest_t_03.png"
+dest_files=["res://.godot/imported/chest_t_03.png-1adc2725efe623ffbe931503a1a095f9.ctex"]
 
 [params]
 

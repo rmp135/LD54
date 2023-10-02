@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=3 format=3 uid="uid://bnqlfjeod68r3"]
+
+[ext_resource type="Script" path="res://items/item_definition.gd" id="1_xty5i"]
+[ext_resource type="Texture2D" uid="uid://780gso0351u4" path="res://icons/scroll_skr_01_t.png" id="2_b0pf0"]
+
+[resource]
+script = ExtResource("1_xty5i")
+name = "Scroll"
+texture = ExtResource("2_b0pf0")
+width = 2
+height = 1
+val_from = 20
+val_to = 40
+qty_from = 1
+qty_to = 3
+is_quest = false

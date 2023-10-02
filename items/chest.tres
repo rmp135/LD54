@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=3 format=3 uid="uid://cs23u52u0ins"]
+
+[ext_resource type="Script" path="res://items/item_definition.gd" id="1_nkg7k"]
+[ext_resource type="Texture2D" uid="uid://jggpsglja7m" path="res://icons/chest_t_03.png" id="2_ge50g"]
+
+[resource]
+script = ExtResource("1_nkg7k")
+name = "Chest"
+texture = ExtResource("2_ge50g")
+width = 2
+height = 2
+val_from = 50
+val_to = 100
+qty_from = 1
+qty_to = 2
+is_quest = false

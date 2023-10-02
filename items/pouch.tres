@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=3 format=3 uid="uid://by84ectnfjjjq"]
+
+[ext_resource type="Script" path="res://items/item_definition.gd" id="1_27phs"]
+[ext_resource type="Texture2D" uid="uid://byebyfuydfyea" path="res://icons/pouch_t.PNG" id="2_b0th1"]
+
+[resource]
+script = ExtResource("1_27phs")
+name = "Pouch"
+texture = ExtResource("2_b0th1")
+width = 2
+height = 1
+val_from = 50
+val_to = 100
+qty_from = 0
+qty_to = 3
+is_quest = false

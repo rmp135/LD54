@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Scenario" load_steps=2 format=3 uid="uid://cgpusli4py78j"]
+
+[ext_resource type="Script" path="res://scenarios/scenario.gd" id="4_e5ydk"]
+
+[resource]
+script = ExtResource("4_e5ydk")
+name = "Campfire"
+description = "Time to rest and prepare."
+grid_width = 6
+grid_height = 6
+prevent_countdown = true
+items = Array[Resource("res://items/item_definition.gd")]([])

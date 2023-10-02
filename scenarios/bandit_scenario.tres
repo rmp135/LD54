@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Scenario" load_steps=5 format=3 uid="uid://cxs162kk4liwk"]
+
+[ext_resource type="Script" path="res://scenarios/scenario.gd" id="1_1dr33"]
+[ext_resource type="Resource" uid="uid://l0mrrmedqnyx" path="res://items/locket.tres" id="1_7vhe4"]
+[ext_resource type="Resource" uid="uid://bnqlfjeod68r3" path="res://items/scroll.tres" id="2_x58yq"]
+[ext_resource type="Resource" uid="uid://cs23u52u0ins" path="res://items/chest.tres" id="3_rjida"]
+
+[resource]
+script = ExtResource("1_1dr33")
+name = "Bandit Camp"
+description = "Remains of a bandit camp."
+grid_width = 4
+grid_height = 6
+prevent_countdown = false
+items = Array[Resource("res://items/item_definition.gd")]([ExtResource("1_7vhe4"), ExtResource("2_x58yq"), ExtResource("3_rjida")])

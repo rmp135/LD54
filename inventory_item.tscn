@@ -1,18 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://spcfw88mqqjl"]
+[gd_scene load_steps=5 format=3 uid="uid://spcfw88mqqjl"]
 
-[ext_resource type="Texture2D" uid="uid://op6oqyg54f66" path="res://icon.svg" id="1_l0h0t"]
+[ext_resource type="Texture2D" uid="uid://dybrrp845bo8s" path="res://32x/tile_0005.png" id="1_gcolq"]
 [ext_resource type="Script" path="res://inventory_item.gd" id="2_r85dm"]
+[ext_resource type="Texture2D" uid="uid://780gso0351u4" path="res://icons/scroll_skr_01_t.png" id="3_5ym1j"]
+[ext_resource type="AudioStream" uid="uid://bgd1gaw26h48w" path="res://sounds/click.wav" id="4_80fbd"]
 
-[node name="inv_item" type="TextureRect"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1120.0
-offset_bottom = -616.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_l0h0t")
-expand_mode = 1
+[node name="inv_item" type="NinePatchRect"]
+offset_right = -4.512
+offset_bottom = 1.2
+size_flags_horizontal = 0
+mouse_filter = 1
+texture = ExtResource("1_gcolq")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
 script = ExtResource("2_r85dm")
 
+[node name="Icon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_5ym1j")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_80fbd")
+
 [connection signal="gui_input" from="." to="." method="_on_icon_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_icon_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

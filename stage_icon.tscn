@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://b13sk64jpu7qa"]
+
+[ext_resource type="Texture2D" uid="uid://xydlm1dj7w05" path="res://32x/tile_0079.png" id="1_rd6sq"]
+[ext_resource type="Script" path="res://stage.gd" id="2_lgrh2"]
+[ext_resource type="Texture2D" uid="uid://opy0wuwqiqho" path="res://32x/tile_0078.png" id="3_ct4jm"]
+
+[node name="One" type="Sprite2D"]
+position = Vector2(-434, 201)
+texture = ExtResource("1_rd6sq")
+script = ExtResource("2_lgrh2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_ct4jm")

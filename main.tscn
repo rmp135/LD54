@@ -1,39 +1,313 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6toblb854h5f"]
+[gd_scene load_steps=16 format=3 uid="uid://b6toblb854h5f"]
 
-[ext_resource type="Script" path="res://ui.gd" id="1_ceuni"]
+[ext_resource type="Texture2D" uid="uid://dorrbx55l0tev" path="res://32x/uipack_rpg_sheet.png" id="1_3x2d5"]
+[ext_resource type="Script" path="res://main.gd" id="1_j0vsn"]
+[ext_resource type="Script" path="res://inventory_manager.gd" id="1_mtkrt"]
+[ext_resource type="LabelSettings" uid="uid://ca1ouhwfhfwfn" path="res://label_settings.tres" id="2_eydsm"]
 [ext_resource type="PackedScene" uid="uid://crkumcxpc8hyx" path="res://inventory.tscn" id="2_wyt28"]
+[ext_resource type="Resource" uid="uid://cgpusli4py78j" path="res://scenarios/rest_scenario.tres" id="3_p2sta"]
+[ext_resource type="Resource" uid="uid://cxs162kk4liwk" path="res://scenarios/bandit_scenario.tres" id="4_tfuev"]
+[ext_resource type="Script" path="res://hovered.gd" id="5_dtinm"]
+[ext_resource type="Script" path="res://stages.gd" id="8_fk0sw"]
+[ext_resource type="PackedScene" uid="uid://b13sk64jpu7qa" path="res://stage_icon.tscn" id="9_n43r3"]
+[ext_resource type="AudioStream" uid="uid://bgd1gaw26h48w" path="res://sounds/click.wav" id="11_0fk53"]
 
-[node name="Control" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_ceuni")
+[sub_resource type="LabelSettings" id="LabelSettings_s760d"]
+font_size = 19
+font_color = Color(0.921875, 0.886719, 0.804688, 1)
+outline_color = Color(0.425781, 0.292969, 0.152344, 1)
+shadow_color = Color(0, 0, 0, 0.196078)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tc6b"]
+atlas = ExtResource("1_3x2d5")
+region = Rect2(0, 49, 190, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uiw26"]
+atlas = ExtResource("1_3x2d5")
+region = Rect2(0, 98, 190, 45)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mj24a"]
+font_size = 25
+font_color = Color(0.921875, 0.886719, 0.804688, 1)
+shadow_color = Color(0, 0, 0, 0.113725)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_j0vsn")
+scenarios = Array[Resource("res://scenarios/scenario.gd")]([ExtResource("4_tfuev"), ExtResource("3_p2sta")])
 
 [node name="Background" type="ColorRect" parent="."]
+offset_left = -579.0
+offset_top = -333.0
+offset_right = 581.0
+offset_bottom = 329.0
+color = Color(0.25098, 0.196078, 0.14902, 1)
+
+[node name="TextureRect" type="NinePatchRect" parent="."]
+texture_filter = 1
+offset_left = -530.0
+offset_top = -257.0
+offset_right = 548.0
+offset_bottom = 286.0
+texture = ExtResource("1_3x2d5")
+region_rect = Rect2(100, 376, 100, 100)
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 8
+patch_margin_bottom = 7
+
+[node name="InventoryManager" type="Node2D" parent="."]
+script = ExtResource("1_mtkrt")
+
+[node name="MyInventory" parent="InventoryManager" instance=ExtResource("2_wyt28")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -389.0
+offset_top = -160.0
+offset_right = -261.0
+offset_bottom = -31.0
+width = 4
+height = 4
+
+[node name="OtherInventory" parent="InventoryManager" instance=ExtResource("2_wyt28")]
+offset_left = 150.0
+offset_top = -154.0
+offset_right = 470.0
+offset_bottom = -122.0
+width = 6
+height = 6
+
+[node name="NinePatchRect" type="NinePatchRect" parent="InventoryManager"]
+texture_filter = 1
+offset_left = -142.0
+offset_top = -247.0
+offset_right = 114.0
+offset_bottom = -197.0
+texture = ExtResource("1_3x2d5")
+region_rect = Rect2(284, 202, 92, 92)
+patch_margin_left = 4
+patch_margin_top = 3
+patch_margin_right = 5
+patch_margin_bottom = 3
+
+[node name="Label" type="Label" parent="InventoryManager/NinePatchRect"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0.596078, 0.6, 1)
+anchor_bottom = 0.98
+offset_bottom = 0.999999
+text = "Ruffians"
+label_settings = ExtResource("2_eydsm")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="MyInventory" parent="." instance=ExtResource("2_wyt28")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
+[node name="NinePatchRect2" type="NinePatchRect" parent="InventoryManager"]
+texture_filter = 1
+offset_left = -142.0
+offset_top = -247.0
+offset_right = 114.0
+offset_bottom = -151.0
+texture = ExtResource("1_3x2d5")
+region_rect = Rect2(284, 202, 92, 92)
+patch_margin_left = 4
+patch_margin_top = 3
+patch_margin_right = 5
+patch_margin_bottom = 3
 
-[node name="OtherInventory" parent="." instance=ExtResource("2_wyt28")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 523.0
-offset_right = 843.0
-offset_bottom = 0.0
-width = 2
-height = 8
+[node name="TitleLabel" type="Label" parent="InventoryManager/NinePatchRect2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.98
+offset_bottom = -44.08
+text = "{scenario}"
+label_settings = ExtResource("2_eydsm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="InventoryManager/NinePatchRect2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.98
+offset_top = 50.0
+offset_bottom = 1.92
+text = "{description}"
+label_settings = SubResource("LabelSettings_s760d")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 184.0
+offset_top = 157.0
+offset_right = 374.0
+offset_bottom = 206.0
+texture_normal = SubResource("AtlasTexture_4tc6b")
+texture_pressed = SubResource("AtlasTexture_uiw26")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="TextureButton"]
+layout_mode = 0
+offset_right = 190.0
+offset_bottom = 49.0
+text = "Move On"
+label_settings = SubResource("LabelSettings_mj24a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButton" type="TextureButton" parent="."]
+visible = false
+offset_left = 184.0
+offset_top = 157.0
+offset_right = 374.0
+offset_bottom = 206.0
+texture_normal = SubResource("AtlasTexture_4tc6b")
+texture_pressed = SubResource("AtlasTexture_uiw26")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="RestartButton"]
+layout_mode = 0
+offset_right = 190.0
+offset_bottom = 49.0
+text = "Retry"
+label_settings = SubResource("LabelSettings_mj24a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hovered" type="NinePatchRect" parent="."]
+texture_filter = 1
+offset_left = -118.0
+offset_top = -89.0
+offset_right = 66.0
+offset_bottom = 86.0
+texture = ExtResource("1_3x2d5")
+region_rect = Rect2(284, 202, 92, 92)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 3
+script = ExtResource("5_dtinm")
+
+[node name="Name" type="Label" parent="Hovered"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 8.0
+offset_right = 121.0
+offset_bottom = 55.0
+text = "{Item}"
+label_settings = ExtResource("2_eydsm")
+
+[node name="Value" type="Label" parent="Hovered"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 55.0
+offset_right = 121.0
+offset_bottom = 102.0
+text = "{Value}"
+label_settings = ExtResource("2_eydsm")
+
+[node name="GameOver" type="NinePatchRect" parent="."]
+visible = false
+texture_filter = 1
+offset_left = -118.0
+offset_top = -89.0
+offset_right = 66.0
+offset_bottom = 86.0
+texture = ExtResource("1_3x2d5")
+region_rect = Rect2(284, 202, 92, 92)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 3
+
+[node name="Collected" type="Label" parent="GameOver"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 8.0
+offset_right = 174.0
+offset_bottom = 55.0
+text = "You looted:"
+label_settings = ExtResource("2_eydsm")
+
+[node name="Value" type="Label" parent="GameOver"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 55.0
+offset_right = 121.0
+offset_bottom = 102.0
+text = "{Value}"
+label_settings = ExtResource("2_eydsm")
+
+[node name="Stages" type="Node2D" parent="."]
+script = ExtResource("8_fk0sw")
+
+[node name="One" parent="Stages" instance=ExtResource("9_n43r3")]
+
+[node name="Two" parent="Stages" instance=ExtResource("9_n43r3")]
+position = Vector2(-403, 201)
+
+[node name="Three" parent="Stages" instance=ExtResource("9_n43r3")]
+position = Vector2(-372, 201)
+
+[node name="Four" parent="Stages" instance=ExtResource("9_n43r3")]
+position = Vector2(-342, 201)
+
+[node name="NinePatchRect3" type="NinePatchRect" parent="Stages"]
+texture_filter = 1
+offset_left = -454.0
+offset_top = 223.0
+offset_right = -313.0
+offset_bottom = 273.0
+texture = ExtResource("1_3x2d5")
+region_rect = Rect2(284, 202, 92, 92)
+patch_margin_left = 4
+patch_margin_top = 3
+patch_margin_right = 5
+patch_margin_bottom = 3
+
+[node name="Label" type="Label" parent="Stages/NinePatchRect3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.98
+offset_bottom = 0.999999
+text = "Stages"
+label_settings = ExtResource("2_eydsm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NinePatchRect4" type="NinePatchRect" parent="Stages"]
+texture_filter = 1
+offset_left = 138.0
+offset_top = 223.0
+offset_right = 444.0
+offset_bottom = 273.0
+texture = ExtResource("1_3x2d5")
+region_rect = Rect2(284, 202, 92, 92)
+patch_margin_left = 4
+patch_margin_top = 3
+patch_margin_right = 5
+patch_margin_bottom = 3
+
+[node name="MoveOnLabel" type="Label" parent="Stages/NinePatchRect4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.98
+offset_bottom = 0.999999
+text = "Moving on in 5	"
+label_settings = ExtResource("2_eydsm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="ClickAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_0fk53")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
