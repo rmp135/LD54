@@ -1,21 +1,22 @@
+class_name HoverController
 extends Control
 
+@export var name_label : Label
+@export var value_label : Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hide()
-	($Name as Label).text = "something"
-	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	var mouse_pos = get_global_mouse_position() + Vector2(10,10)
+	position = mouse_pos
 
 func on_hovered(item: Item):
 	show()
-	($Name as Label).text = item.name
-	($Value as Label).text = var_to_str(item.value)
+	name_label.text = item.name
+	value_label.text = str(item.value)
 
 func on_unhovered():
 	hide()

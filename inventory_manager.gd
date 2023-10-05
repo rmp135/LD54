@@ -1,6 +1,8 @@
 class_name InventoryManager
 extends Node2D
 
+@export var hover_controller : HoverController
+
 func clear_inventory():
 	($OtherInventory as Inventory).clear_items()
 
@@ -8,7 +10,7 @@ func generate_inventory(scenario: Scenario):
 	($OtherInventory as Inventory).width = scenario.grid_width
 	($OtherInventory as Inventory).height = scenario.grid_height
 	$OtherInventory.resize()
-	$NinePatchRect/Label.text = scenario.name
+	#$NinePatchRect/Label.text = scenario.name
 	if scenario.items.is_empty(): return
 	for i in 5:
 		var itemToSpawn = scenario.items.pick_random()
@@ -17,14 +19,15 @@ func generate_inventory(scenario: Scenario):
 			var w = itemInstance.width
 			itemInstance.width = itemInstance.height
 			itemInstance.height = w
-		var inventoryItem = preload("res://inventory_item.tscn")
-		var inventoryItemInstance = inventoryItem.instantiate()
+		var inventoryItemScene = preload("res://inventory_item.tscn")
+		var inventory_item = inventoryItemScene.instantiate()
 		
-		inventoryItemInstance.dropped.connect(on_item_dropped)
-		inventoryItemInstance.on_hover.connect(get_tree().root.get_node("Main/Hovered").on_hovered)
-		inventoryItemInstance.on_unhover.connect(get_tree().root.get_node("Main/Hovered").on_unhovered)	
-		inventoryItemInstance.set_item(itemInstance)
-		try_add_item($OtherInventory, inventoryItemInstance)
+		inventory_item.dropped.connect(on_item_dropped)
+		inventory_item.on_hover.connect(hover_controller.on_hovered)
+		inventory_item.on_unhover.connect(hover_controller.on_unhovered)	
+		inventory_item.hover_controller = hover_controller
+		inventory_item.set_item(itemInstance)
+		try_add_item($OtherInventory, inventory_item)
 
 func try_add_item(inventory: Inventory, item: InventoryItem):
 	for x in inventory.width:
@@ -35,6 +38,7 @@ func try_add_item(inventory: Inventory, item: InventoryItem):
 
 func on_item_dropped(item: InventoryItem):
 	var invs = get_tree().get_nodes_in_group("inventory") as Array[Inventory]
+	hover_controller.show()
 	var foundInv : Inventory = null
 	for i in invs:
 		if i.can_drop(item):

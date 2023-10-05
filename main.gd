@@ -25,19 +25,19 @@ func progress_stage():
 		if not scenario.prevent_countdown:
 			$Stages/NinePatchRect4.show()
 			($Stages/NinePatchRect4/MoveOnLabel as Label).text = "Moving on in 10"
-			$Timer.start()
+		#	$Timer.start()
 			
 		inventoryManager.generate_inventory(scenario)
 		($Stages as Stages).set_stage(stage)
-		($InventoryManager/NinePatchRect2/TitleLabel as Label).text = scenario.name
-		($InventoryManager/NinePatchRect2/DescriptionLabel as Label).text = scenario.description
+	#	($InventoryManager/NinePatchRect2/TitleLabel as Label).text = scenario.name
+	#	($InventoryManager/NinePatchRect2/DescriptionLabel as Label).text = scenario.description
 	if stage == 5:
 		end_game()
 
 func pick_scenario() -> Scenario:
-	var restScenario = scenarios.filter(is_rest_scenario).pick_random()
-	if stage == 3:
-		return restScenario
+	#var restScenario = scenarios.filter(is_rest_scenario).pick_random()
+	##if stage == 3:
+	#	return restScenario
 	return scenarios.pick_random()
 
 func is_rest_scenario(s: Scenario):
